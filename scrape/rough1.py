@@ -180,3 +180,5 @@ open('results.json', 'w').write(json.dumps(all, indent=4))
 driver.close()
 
 print(f"Time taken: {time() - start_time} seconds")
+
+print("yo")
