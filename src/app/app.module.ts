@@ -15,6 +15,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
 import { NutritionFactsComponent } from './Components/nutrition-facts/nutrition-facts.component';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import { NutritionFactsComponent } from './Components/nutrition-facts/nutrition-
     MatFormFieldModule,
     MatSelectModule,
     FormsModule,
+    MatSliderModule,
+    MatButtonModule,
     
   ],
   providers: [],
