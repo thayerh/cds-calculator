@@ -5,17 +5,33 @@
     </mat-card-header>
     <mat-form-field>
       <mat-label>Select Day</mat-label>
-      <mat-select [(value)]="selectedDay">
-        <mat-option *ngFor="let day of days" [value]="initializeDay(day)">
+      <mat-select [(value)]="selectedDay" (selectionChange)="onDaySelectionChange($event)">
+        <mat-option *ngFor="let day of days" [value]="day">
           {{day}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field *ngIf="selectedDay">
-      <mat-label>Time</mat-label>
-      <mat-select [(value)]="selectedTime">
+    <mat-form-field>
+      <mat-label>Select Time</mat-label>
+      <mat-select [(value)]="selectedTime" (selectionChange)="onTimeSelectionChange($event)">
         <mat-option *ngFor="let time of times" [value]="time">
           {{time}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Select Station</mat-label>
+      <mat-select [(value)]="selectedStation" (selectionChange)="onStationSelectionChange($event)">
+        <mat-option *ngFor="let station of stations" [value]="station">
+          {{station}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Select Food</mat-label>
+      <mat-select [(value)]="selectedFood" (selectionChange)="onFoodSelectionChange($event)">
+        <mat-option *ngFor="let food of foods" [value]="food">
+          {{food}}
         </mat-option>
       </mat-select>
     </mat-form-field>
