@@ -42,13 +42,14 @@ def handle_exception(day, e):
     if e>5: quit()
 
 j=0
-curDate = NextDate(2023, 8, 20)
+curDate = NextDate(2023, 8, 17)
 
-all = {}
+with open("results.json", "r") as json_file:
+    all = json.load(json_file)
 
 e=0
 
-while j < 2:
+while j < 3:
     j += 1
 
 
@@ -70,6 +71,7 @@ while j < 2:
     m=0
     for i, meal_type in enumerate(meals):
         i=0
+        m+=1
 
         print("Meal: " + str(m))
 
