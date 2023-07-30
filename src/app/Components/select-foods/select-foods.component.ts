@@ -5,6 +5,7 @@ import { NutritionFactsComponent } from '../nutrition-facts/nutrition-facts.comp
 import { ChosenFood } from 'src/assets/chosen-food';
 import { FoodObject } from 'src/assets/food-object';
 import { DatePipe } from '@angular/common';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 
 @Component({
@@ -14,8 +15,11 @@ import { DatePipe } from '@angular/common';
 })
 export class SelectFoodsComponent {
   @ViewChild(NutritionFactsComponent) nutritionFactsComponent!: NutritionFactsComponent;
+  @ViewChild('picker') picker!: MatDatepicker<any>;
 
   selectedFoods: ChosenFood[] = []
+
+  datePickerOn: boolean = true;
 
   //first layer
   menu = Object(this.mealService.menu);
@@ -114,6 +118,8 @@ public submitFood(name: string, food: any, serving: any):void {
   this.sliderValue = 0
 
   this.nutritionFactsComponent.updateTotals()
+
+  this.picker.select(null);
 }
 
 public removeFood(index: number): void {

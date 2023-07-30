@@ -5,9 +5,9 @@
         <mat-card-title>Select your food</mat-card-title>
       </mat-card-header>
 
-      <mat-form-field class="example-full-width">
+      <mat-form-field *ngIf="datePickerOn" class="example-full-width">
         <mat-label>Select Day</mat-label>
-        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" (dateChange)="onDaySelectionChange($event)">
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" (dateChange)="onDaySelectionChange($event)" #dateInput>
         <mat-hint>MM/DD/YYYY</mat-hint>
         <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker touchUi #picker></mat-datepicker>
