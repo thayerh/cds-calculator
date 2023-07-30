@@ -1,11 +1,18 @@
 .container {
     display: flex;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
 }
 mat-card {
-    margin-left: 3cm;
-    margin-right: 3cm;
+    margin-left: 50px;
+    margin-right: 50px;
 }
 .selectedFood {
   margin-left: .25cm;
   margin-right: .25cm;
+}
+mat-card.cardContainer {
+  padding: 50px;
+  padding-top: 10px;
 }
