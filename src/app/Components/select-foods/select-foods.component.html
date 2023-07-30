@@ -35,7 +35,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <div *ngIf="selectedStation!==''">
+    <div *ngIf="selectedFood!==''">
       <h4>Servings consumed</h4>
       <mat-slider min="0" max="4" step=".5" showTickMarks discrete>
         <input matSliderThumb [(ngModel)]="sliderValue">
