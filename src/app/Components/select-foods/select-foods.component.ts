@@ -19,20 +19,59 @@ export class SelectFoodsComponent {
   times = Object.keys(Object(this.menu[this.selectedDay]))
   selectedTime = ''
 
+  //third layer
+  selectedTimeObject = Object(this.selectedDayObject[this.selectedTime]);
+  stations = Object.keys(Object(this.selectedDayObject[this.selectedTime]));
+  selectedStation = ''
+
+  //fourth layer
+  selectedStationObject = Object(this.selectedTimeObject[this.selectedStation]);
+  foods = Object.keys(Object(this.selectedTimeObject[this.selectedStation]));
+  selectedFood = '';
+
   //selectedTimeObject = this.selected
 
-public initializeDay(day:string): string{
-  this.selectedDayObject = this.menu[day];
+public onDaySelectionChange(event: any): void {
+  const selectedDay = event.value;
+  this.initializeDay(selectedDay);
+}
+
+public initializeDay(day:string): string {
+  this.selectedDayObject = Object(this.menu[day]);
   this.times = Object.keys(Object(this.menu[day]))
   return day;
 }
 
-public initializeTime(time:string): string {
-  
-  return time
+public onTimeSelectionChange(event: any): void {
+  const selectedTime = event.value;
+  this.initializeTime(selectedTime);
 }
 
-  selectedFoods = [];
+public initializeTime(time:string): string {
+  this.selectedTimeObject = Object(this.selectedDayObject[time]);
+  this.stations = Object.keys(Object(this.selectedDayObject[time]));
+  return time;
+}
+
+public onStationSelectionChange(event: any): void {
+  const selectedStation = event.value;
+  this.initializeStation(selectedStation);
+}
+
+public initializeStation(station:string): string {
+  this.selectedStationObject = Object(this.selectedTimeObject[station]);
+  this.foods = Object.keys(Object(this.selectedTimeObject[station]));
+  return station;
+}
+
+public onFoodSelectionChange(event: any): void {
+  console.log('eeee');
+}
+
+public initializeFood(food:string): string {
+  console.log('oooo');
+  return '';
+}
 
   constructor(private mealService: MealserviceService){}
 }
