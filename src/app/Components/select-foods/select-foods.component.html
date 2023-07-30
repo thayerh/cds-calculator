@@ -4,14 +4,15 @@
       <mat-card-header>
         <mat-card-title>Select your food</mat-card-title>
       </mat-card-header>
-      <mat-form-field>
+
+      <mat-form-field *ngIf="datePickerOn" class="example-full-width">
         <mat-label>Select Day</mat-label>
-        <mat-select [(value)]="selectedDay" (selectionChange)="onDaySelectionChange($event)">
-          <mat-option *ngFor="let day of days" [value]="day">
-            {{day}}
-          </mat-option>
-        </mat-select>
+        <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" (dateChange)="onDaySelectionChange($event)" #dateInput>
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker touchUi #picker></mat-datepicker>
       </mat-form-field>
+
       <mat-form-field *ngIf="selectedDay!==''">
         <mat-label>Select Time</mat-label>
         <mat-select [(value)]="selectedTime" (selectionChange)="onTimeSelectionChange($event)">
@@ -37,7 +38,7 @@
         </mat-select>
       </mat-form-field>
       <div *ngIf="selectedFood!==''">
-        <h4>Servings consumed</h4>
+        <h3>Servings consumed</h3>
         <mat-slider min="0" max="4" step=".5" showTickMarks discrete>
           <input matSliderThumb [(ngModel)]="sliderValue">
         </mat-slider>
@@ -53,7 +54,7 @@
         <mat-card-title>Selected Items</mat-card-title>
       </mat-card-header>
       
-      <mat-card class="selectedFood" *ngFor="let food of selectedFoods; let i = index">
+      <mat-card class="selectedFood" *ngFor="let food of selectedFoods; let i = index" color="primary">
         <mat-card-header><mat-card-title>{{food.name}}</mat-card-title></mat-card-header>
         <mat-card-content>Servings: {{food.quantity}}</mat-card-content>
         <mat-card-actions>

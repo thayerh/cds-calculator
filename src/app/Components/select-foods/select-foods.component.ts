@@ -4,6 +4,8 @@ import { MealserviceService } from 'src/app/Services/mealservice.service';
 import { NutritionFactsComponent } from '../nutrition-facts/nutrition-facts.component';
 import { ChosenFood } from 'src/assets/chosen-food';
 import { FoodObject } from 'src/assets/food-object';
+import { DatePipe } from '@angular/common';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 
 @Component({
@@ -13,13 +15,19 @@ import { FoodObject } from 'src/assets/food-object';
 })
 export class SelectFoodsComponent {
   @ViewChild(NutritionFactsComponent) nutritionFactsComponent!: NutritionFactsComponent;
+  @ViewChild('picker') picker!: MatDatepicker<any>;
 
   selectedFoods: ChosenFood[] = []
+
+  datePickerOn: boolean = true;
 
   //first layer
   menu = Object(this.mealService.menu);
   days = Object.keys(this.menu)
   selectedDay= '';
+
+  minDate: Date = new Date(2023, 7, 16);
+  maxDate: Date = new Date(2023, 7, 21);
 
   //second layer
   selectedDayObject = Object(this.menu[this.selectedDay]);
@@ -41,8 +49,18 @@ export class SelectFoodsComponent {
   sliderValue = 0;
 
 public onDaySelectionChange(event: any): void {
-  const selectedDay = event.value;
-  this.initializeDay(selectedDay);
+  const selectedDay: Date = event.value;
+  const formattedDate: string | null = this.datePipe.transform(selectedDay, 'yyyy-MM-dd');
+  if (formattedDate) {
+    const formattedDateWithoutZeros: string = formattedDate.replace('-0', '-');
+    this.initializeDay(formattedDateWithoutZeros);
+    this.selectedDay = formattedDateWithoutZeros;
+    this.selectedTime = '';
+    this.selectedStation = '';
+    this.selectedFood = '';
+  } else {
+    this.selectedDay = '';
+  }
 }
 
 public initializeDay(day:string): string {
@@ -54,6 +72,8 @@ public initializeDay(day:string): string {
 public onTimeSelectionChange(event: any): void {
   const selectedTime = event.value;
   this.initializeTime(selectedTime);
+  this.selectedStation = '';
+  this.selectedFood = '';
 }
 
 public initializeTime(time:string): string {
@@ -65,6 +85,7 @@ public initializeTime(time:string): string {
 public onStationSelectionChange(event: any): void {
   const selectedStation = event.value;
   this.initializeStation(selectedStation);
+  this.selectedFood = '';
 }
 
 public initializeStation(station:string): string {
@@ -97,6 +118,8 @@ public submitFood(name: string, food: any, serving: any):void {
   this.sliderValue = 0
 
   this.nutritionFactsComponent.updateTotals()
+
+  this.picker.select(null);
 }
 
 public removeFood(index: number): void {
@@ -105,5 +128,5 @@ public removeFood(index: number): void {
   this.nutritionFactsComponent.updateTotals()
 }
 
-  constructor(private mealService: MealserviceService){}
+  constructor(private mealService: MealserviceService, private datePipe: DatePipe ){}
 }
