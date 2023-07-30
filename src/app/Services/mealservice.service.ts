@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import menuList from '../../../scrape/results2.json'
+import menuList from '../../../scrape/results.json'
 import { FoodItem } from 'src/assets/food-item';
 import { DaysMenu } from 'src/assets/days-menu';
 import { Menu } from 'src/assets/menu';
@@ -10,6 +10,7 @@ import { Menu } from 'src/assets/menu';
 export class MealserviceService {
 
   menu= menuList;
+
 
   constructor() { }
 }
