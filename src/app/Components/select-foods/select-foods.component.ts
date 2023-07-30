@@ -1,3 +1,4 @@
+import { NONE_TYPE } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { MealserviceService } from 'src/app/Services/mealservice.service';
 
@@ -7,14 +8,28 @@ import { MealserviceService } from 'src/app/Services/mealservice.service';
   styleUrls: ['./select-foods.component.scss']
 })
 export class SelectFoodsComponent {
-  menu = this.mealService.menu;
-  keys = Object.keys(this.menu)
+  //first layer
+  menu = Object(this.mealService.menu);
+  days = Object.keys(this.menu)
+  selectedDay= '';
 
-  selectedDay: string | undefined;
+  //second layer
+  selectedDayObject = Object(this.menu[this.selectedDay]);
+  times = Object.keys(Object(this.menu[this.selectedDay]))
+  selectedTime = ''
+
+  //selectedTimeObject = this.selected
+
+public initializeDay(day:string): string{
+  this.selectedDayObject = this.menu[day];
+  this.times = Object.keys(Object(this.menu[day]))
+  return day;
+}
+
+public initializeTime(time:string): string {
   
-  days: string[] = [
-    "monday", "tuesday", "wednesday", "thursday","friday", "saturday", "sunday"
-  ];
+  return time
+}
 
   selectedFoods = [];
 
