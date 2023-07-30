@@ -16,7 +16,9 @@
       <tr>
         <th colspan="2">
           <b>Calories</b>
-          200
+          <div *ngIf="selectedFoods[0]">
+            {{selectedFoods[0].quantity}}
+          </div>
         </th>
         <td>
           Calories from Fat
