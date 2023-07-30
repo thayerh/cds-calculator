@@ -8,9 +8,21 @@ body {
     justify-content: center;
 }
 
-p {
+app-root {
+    width: 100%;
+    justify-content: center;
+}
+
+.navBar {
     position: sticky;
     top: 0;
     width: 100%;
     z-index: 1;
 }
+
+.homeContainer {
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
