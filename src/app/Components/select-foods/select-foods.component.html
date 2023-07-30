@@ -1,5 +1,5 @@
 <div class="container">
-  <mat-card>
+  <mat-card class="cardContainer">
     <mat-card-header>
       <mat-card-title>Select your food</mat-card-title>
     </mat-card-header>
@@ -41,22 +41,26 @@
         <input matSliderThumb [(ngModel)]="sliderValue">
       </mat-slider>
     </div>
-    <button mat-raised-button color="primary" *ngIf="sliderValue>0 && selectedFood!==''" (click)="submitFood(selectedFoodObject, sliderValue)">Submit</button>
+    <button mat-raised-button color="primary" *ngIf="sliderValue>0 && selectedFood!==''" (click)="submitFood(selectedFood, selectedFoodObject, sliderValue)">Submit</button>
     
   </mat-card>
 
 
-  <mat-card>
+  <mat-card class="cardContainer">
     <mat-card-header>
       <mat-card-title>Selected Items</mat-card-title>
     </mat-card-header>
     
-    <mat-card class="selectedFood" *ngFor="let food of selectedFoods">
-      <mat-card-content>{{food.food.Calories}}</mat-card-content>
+    <mat-card class="selectedFood" *ngFor="let food of selectedFoods; let i = index">
+      <mat-card-header><mat-card-title>{{food.name}}</mat-card-title></mat-card-header>
+      <mat-card-content>Servings: {{food.quantity}}</mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="warn" (click)="removeFood(i)">X</button>
+      </mat-card-actions>
     </mat-card>
   </mat-card>
-  <app-nutrition-facts>
-    
+
+  <app-nutrition-facts [selectedFoods]="selectedFoods">
   </app-nutrition-facts>
 </div>
 <p *ngIf="selectedFoodObject">{{selectedFoodObject.Calories}}</p>

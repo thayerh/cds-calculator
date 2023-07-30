@@ -73,18 +73,18 @@ public initializeStation(station:string): string {
 }
 
 public onFoodSelectionChange(event: any): void {
-  const selectedFood = event.value
-  this.initializeFood(selectedFood)
-  console.log('eeee');
+  this.selectedFood = event.value
+  this.initializeFood(this.selectedFood)
 }
 
 public initializeFood(food:string): string {
-  console.log('oooo');
   this.selectedFoodObject = this.selectedStationObject[this.selectedFood]
   return '';
 }
-public submitFood(food: any, serving: any):void {
+
+public submitFood(name: string, food: any, serving: any):void {
   const myFood: ChosenFood = {
+    name: name,
     quantity: serving,
     food: food
   }
@@ -94,8 +94,10 @@ public submitFood(food: any, serving: any):void {
   this.selectedStation = ''
   this.selectedFood = ''
   this.sliderValue = 0
+}
 
-
+public removeFood(index: number): void {
+  this.selectedFoods.splice(index, 1)
 }
 
   constructor(private mealService: MealserviceService){}
