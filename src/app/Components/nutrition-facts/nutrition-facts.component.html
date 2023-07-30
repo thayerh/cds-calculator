@@ -17,14 +17,12 @@
       <tr>
         <th colspan="2">
           <b>Calories</b>
-          <div *ngIf="selectedFoods[0]">
-            {{selectedFoods[0].quantity}}
-          </div>
+          {{cummulitiveTotals["Calories"]}}
           
         </th>
         <td>
           Calories from Fat
-          130
+          {{cummulitiveTotals["Calories from Fat"]}}
         </td>
       </tr>
       <tr class="thick-row">
@@ -35,7 +33,7 @@
       <tr>
         <th colspan="2">
           <b>Total Fat</b>
-          14g
+          {{cummulitiveTotals["Total Fat"]}}g
         </th>
         <td>
           <b>22%</b>
@@ -46,7 +44,7 @@
         </td>
         <th>
           Saturated Fat
-          9g
+          {{cummulitiveTotals["Saturated Fat"]}}g
         </th>
         <td>
           <b>22%</b>
@@ -57,7 +55,7 @@
         </td>
         <th>
           Trans Fat
-          0g
+          {{cummulitiveTotals["Trans Fat"]}}g
         </th>
         <td>
         </td>
@@ -65,7 +63,7 @@
       <tr>
         <th colspan="2">
           <b>Cholesterol</b>
-          55mg
+          {{cummulitiveTotals["Cholesterol"]}}mg
         </th>
         <td>
           <b>18%</b>
@@ -74,7 +72,7 @@
       <tr>
         <th colspan="2">
           <b>Sodium</b>
-          40mg
+          {{cummulitiveTotals["Sodium"]}}mg
         </th>
         <td>
           <b>2%</b>
@@ -83,7 +81,7 @@
       <tr>
         <th colspan="2">
           <b>Total Carbohydrate</b>
-          17g
+          {{cummulitiveTotals["Total Carbohydrate"]}}g
         </th>
         <td>
           <b>6%</b>
@@ -94,7 +92,7 @@
         </td>
         <th>
           Dietary Fiber
-          1g
+          {{cummulitiveTotals["Dietary Fiber"]}}g
         </th>
         <td>
           <b>4%</b>
@@ -105,7 +103,7 @@
         </td>
         <th>
           Sugars
-          14g
+          {{cummulitiveTotals["Sugars"]}}g
         </th>
         <td>
         </td>
@@ -113,7 +111,7 @@
       <tr class="thick-end">
         <th colspan="2">
           <b>Protein</b>
-          3g
+          {{cummulitiveTotals["Protein"]}}g
         </th>
         <td>
         </td>
