@@ -6,7 +6,7 @@ import { NutritionFactsComponent } from '../nutrition-facts/nutrition-facts.comp
 @Component({
   selector: 'app-select-foods',
   templateUrl: './select-foods.component.html',
-  styleUrls: ['./select-foods.component.scss']
+  styleUrls: ['./select-foods.component.scss'],
 })
 export class SelectFoodsComponent {
   //first layer
@@ -29,7 +29,8 @@ export class SelectFoodsComponent {
   foods = Object.keys(Object(this.selectedTimeObject[this.selectedStation]));
   selectedFood = '';
 
-  //selectedTimeObject = this.selected
+  //slider
+  sliderValue = 0;
 
 public onDaySelectionChange(event: any): void {
   const selectedDay = event.value;

@@ -11,7 +11,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field *ngIf="selectedDay!==''">
       <mat-label>Select Time</mat-label>
       <mat-select [(value)]="selectedTime" (selectionChange)="onTimeSelectionChange($event)">
         <mat-option *ngFor="let time of times" [value]="time">
@@ -19,7 +19,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field *ngIf="selectedTime!==''">
       <mat-label>Select Station</mat-label>
       <mat-select [(value)]="selectedStation" (selectionChange)="onStationSelectionChange($event)">
         <mat-option *ngFor="let station of stations" [value]="station">
@@ -27,7 +27,7 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field>
+    <mat-form-field *ngIf="selectedStation!==''">
       <mat-label>Select Food</mat-label>
       <mat-select [(value)]="selectedFood" (selectionChange)="onFoodSelectionChange($event)">
         <mat-option *ngFor="let food of foods" [value]="food">
@@ -35,18 +35,25 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <div *ngIf="selectedStation!==''">
+      <h4>Servings consumed</h4>
+      <mat-slider min="0" max="4" step=".5" showTickMarks discrete>
+        <input matSliderThumb [(ngModel)]="sliderValue">
+      </mat-slider>
+    </div>
+    <button mat-raised-button color="primary" *ngIf="sliderValue>0 && selectedFood!==''">Submit</button>
+    
   </mat-card>
+
 
   <mat-card>
     <mat-card-header>
       <mat-card-title>Selected Items</mat-card-title>
     </mat-card-header>
+    <p>{{sliderValue}}</p>
   </mat-card>
-  <p>{{selectedDay}}</p>
   <app-nutrition-facts>
     
   </app-nutrition-facts>
 </div>
-<p>{{selectedDayObject}}</p>
 
-<p>bruh</p>
