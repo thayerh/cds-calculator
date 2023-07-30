@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MealserviceService } from 'src/app/Services/mealservice.service';
 
 @Component({
   selector: 'app-select-foods',
@@ -6,5 +7,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./select-foods.component.scss']
 })
 export class SelectFoodsComponent {
-  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+  menu = this.mealService.menu;
+  keys = Object.keys(this.menu)
+
+  selectedDay: string | undefined;
+  
+  days: string[] = [
+    "monday", "tuesday", "wednesday", "thursday","friday", "saturday", "sunday"
+  ];
+
+  selectedFoods = [];
+
+  constructor(private mealService: MealserviceService){}
 }
