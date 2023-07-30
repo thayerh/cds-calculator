@@ -1,6 +1,7 @@
 .container {
     display: flex;
     justify-content: space-around;
+    margin-bottom: .5cm;
 }
 
 .selectedFood {
@@ -12,6 +13,10 @@ mat-card.cardContainer {
   padding-top: 10px;
   width: 340px;
   align-items: center;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0;
 }
 
 mat-card.selectedFood {
@@ -25,4 +30,11 @@ mat-card.selectedFood {
   justify-content: center;
   margin-left: 25px;
   margin-right: 25px;
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0); /* Initial shadow with no blur and no opacity */
+  transition: box-shadow 0.5s ease; /* Add a smooth transition for the shadow effect */
 }
+
+.subContain:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.3); 
+}
+

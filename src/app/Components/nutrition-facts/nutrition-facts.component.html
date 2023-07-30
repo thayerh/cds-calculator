@@ -2,14 +2,12 @@
 <section class="performance-facts">
   <header class="performance-facts__header">
     <h1 class="performance-facts__title">Nutrition Facts</h1>
-    <p>Serving Size 1/2 cup (about 82g)
-      <p>Serving Per Container 8</p>
   </header>
   <table class="performance-facts__table">
     <thead>
       <tr>
         <th colspan="3" class="small-info">
-          Amount Per Serving
+          Your Cummmilitive Totals
         </th>
       </tr>
     </thead>
@@ -36,7 +34,7 @@
           {{cummulitiveTotals["Total Fat"]}}g
         </th>
         <td>
-          <b>22%</b>
+          <b>{{calcPercent(cummulitiveTotals["Total Fat"], 65)}}%</b>
         </td>
       </tr>
       <tr>
@@ -47,7 +45,7 @@
           {{cummulitiveTotals["Saturated Fat"]}}g
         </th>
         <td>
-          <b>22%</b>
+          <b>{{calcPercent(cummulitiveTotals["Saturated Fat"], 20)}}%</b>
         </td>
       </tr>
       <tr>
@@ -66,7 +64,7 @@
           {{cummulitiveTotals["Cholesterol"]}}mg
         </th>
         <td>
-          <b>18%</b>
+          <b>{{calcPercent(cummulitiveTotals["Cholesterol"], 300)}}%</b>
         </td>
       </tr>
       <tr>
@@ -75,7 +73,7 @@
           {{cummulitiveTotals["Sodium"]}}mg
         </th>
         <td>
-          <b>2%</b>
+          <b>{{calcPercent(cummulitiveTotals["Sodium"], 2400)}}%</b>
         </td>
       </tr>
       <tr>
@@ -84,7 +82,7 @@
           {{cummulitiveTotals["Total Carbohydrate"]}}g
         </th>
         <td>
-          <b>6%</b>
+          <b>{{calcPercent(cummulitiveTotals["Total Carbohydrate"], 300)}}%</b>
         </td>
       </tr>
       <tr>
@@ -95,7 +93,7 @@
           {{cummulitiveTotals["Dietary Fiber"]}}g
         </th>
         <td>
-          <b>4%</b>
+          <b>{{calcPercent(cummulitiveTotals["Dietary Fiber"], 25)}}%</b>
         </td>
       </tr>
       <tr>
@@ -118,7 +116,8 @@
       </tr>
     </tbody>
   </table>
-
+  
+  <!--
   <table class="performance-facts__table--grid">
     <tbody>
       <tr>
@@ -143,6 +142,7 @@
       </tr>
     </tbody>
   </table>
+  -->
 
   <p class="small-info">* Percent Daily Values are based on a 2,000 calorie diet. Your daily values may be higher or lower depending on your calorie needs:</p>
 
