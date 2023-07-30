@@ -1,9 +1,22 @@
-<mat-selection-list #shoes>
-    <mat-list-option *ngFor="let shoe of typesOfShoes">
-      {{shoe}}
-    </mat-list-option>
-  </mat-selection-list>
-  
-  <p>
-    Options selected: {{shoes.selectedOptions.selected.length}}
-  </p>
+<div class="container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Select your food</mat-card-title>
+    </mat-card-header>
+    <mat-form-field>
+      <mat-label>Select Day</mat-label>
+      <mat-select [(value)]="selectedDay">
+        <mat-option *ngFor="let key of keys" [value]="menu">
+          {{key}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Selected Items</mat-card-title>
+    </mat-card-header>
+  </mat-card>
+  <p>{{selectedDay}}</p>
+</div>
