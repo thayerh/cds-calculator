@@ -28,15 +28,37 @@ export class NutritionFactsComponent {
   };
 
   public updateTotals() {
+    this.initCummulitiveTotals();
     for (const food of this.selectedFoods) {
       for (const key of Object.keys(food.food)) {
         console.log(key);
         const regex = /(?:\d+\.\d+|\d+)/g; // Regular expression to match one or more digits
         const matches = Object(food.food)[key].match(regex);
-        Object(this.cummulitiveTotals)[key] += (Number(matches)*food.quantity);
+        Object(this.cummulitiveTotals)[key] += (Math.round(Number(matches)*food.quantity));
       }
     }
     console.log(this.cummulitiveTotals)
+  }
+
+  public initCummulitiveTotals() {
+    this.cummulitiveTotals = {
+      "Amount Per Serving": 0,
+      "Calories": 0,
+      "Calories from Fat": 0,
+      "Total Fat": 0,
+      "Saturated Fat": 0,
+      "Trans Fat": 0,
+      "Cholesterol": 0,
+      "Sodium": 0,
+      "Total Carbohydrate": 0,
+      "Dietary Fiber": 0,
+      "Sugars": 0,
+      "Protein": 0
+    };
+  }
+
+  public calcPercent(num: number, expected: number): number {
+    return Math.round((num/expected)*100);
   }
 
 
