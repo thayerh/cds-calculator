@@ -11,5 +11,6 @@ export class MealserviceService {
 
   menu= menuList;
 
+
   constructor() { }
 }

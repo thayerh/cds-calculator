@@ -6,8 +6,16 @@
     <mat-form-field>
       <mat-label>Select Day</mat-label>
       <mat-select [(value)]="selectedDay">
-        <mat-option *ngFor="let key of keys" [value]="menu">
-          {{key}}
+        <mat-option *ngFor="let day of days" [value]="initializeDay(day)">
+          {{day}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="selectedDay">
+      <mat-label>Time</mat-label>
+      <mat-select [(value)]="selectedTime">
+        <mat-option *ngFor="let time of times" [value]="time">
+          {{time}}
         </mat-option>
       </mat-select>
     </mat-form-field>
@@ -23,3 +31,6 @@
     
   </app-nutrition-facts>
 </div>
+<p>{{selectedDayObject}}</p>
+
+<p>bruh</p>
