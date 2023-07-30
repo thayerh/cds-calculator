@@ -27,14 +27,16 @@ export class NutritionFactsComponent {
     "Protein": 0
   };
 
-  public updateTotals(){
-    let last = Object(this.selectedFoods[-1].food)
-    let keys = Object.keys(last.food)
-    for (const key of keys) {
-      const regex = /\d+/g; // Regular expression to match one or more digits
-      const matches = last[key].match(regex);
-      Object(this.cummulitiveTotals)[key] += Number(matches)
+  public updateTotals() {
+    for (const food of this.selectedFoods) {
+      for (const key of Object.keys(food.food)) {
+        console.log(key);
+        const regex = /(?:\d+\.\d+|\d+)/g; // Regular expression to match one or more digits
+        const matches = Object(food.food)[key].match(regex);
+        Object(this.cummulitiveTotals)[key] += (Number(matches)*food.quantity);
+      }
     }
+    console.log(this.cummulitiveTotals)
   }
 
 

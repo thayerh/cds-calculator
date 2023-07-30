@@ -1,5 +1,5 @@
 import { NONE_TYPE } from '@angular/compiler';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MealserviceService } from 'src/app/Services/mealservice.service';
 import { NutritionFactsComponent } from '../nutrition-facts/nutrition-facts.component';
 import { ChosenFood } from 'src/assets/chosen-food';
@@ -12,6 +12,7 @@ import { FoodObject } from 'src/assets/food-object';
   styleUrls: ['./select-foods.component.scss'],
 })
 export class SelectFoodsComponent {
+  @ViewChild(NutritionFactsComponent) nutritionFactsComponent!: NutritionFactsComponent;
 
   selectedFoods: ChosenFood[] = []
 
@@ -94,10 +95,14 @@ public submitFood(name: string, food: any, serving: any):void {
   this.selectedStation = ''
   this.selectedFood = ''
   this.sliderValue = 0
+
+  this.nutritionFactsComponent.updateTotals()
 }
 
 public removeFood(index: number): void {
   this.selectedFoods.splice(index, 1)
+  
+  this.nutritionFactsComponent.updateTotals()
 }
 
   constructor(private mealService: MealserviceService){}
