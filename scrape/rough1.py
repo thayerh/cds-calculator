@@ -37,13 +37,17 @@ def format_nutrition_text(text: str):
 def format_item_name(text: str):
     return text.strip().replace('\n', ' ').replace('\u00ae', '').strip()
 
-def handle_exception():
-    quit()
+def handle_exception(day, e):
+    print(day)
+    if e>5: quit()
 
 j=0
-curDate = NextDate(2023, 8, 20)
+curDate = NextDate(2023, 8, 17)
 
-all = {}
+with open("results.json", "r") as json_file:
+    all = json.load(json_file)
+
+e=0
 
 while j < 3:
     j += 1
@@ -63,8 +67,14 @@ while j < 3:
     day = {}
     # Get all meals
     meals = soup.find_all('a', class_='c-tabs-nav__link')
+    
+    m=0
     for i, meal_type in enumerate(meals):
         i=0
+        m+=1
+
+        print("Meal: " + str(m))
+
         meal_name = str(meal_type.text).strip()
         if len(meal_type['class']) == 1:
             try:
@@ -75,8 +85,9 @@ while j < 3:
                 # Update the soup for the new page
                 soup = BeautifulSoup(driver.page_source, 'html.parser')
             except Exception as e:
+                e+=1
                 print(f"Error occurred while opening meal tab: {e}")
-                handle_exception()
+                handle_exception(day, e)
 
         # Find the active meal
         active_meal = soup.find('div', class_='is-active')
@@ -89,8 +100,9 @@ while j < 3:
                 driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
                 element.click()
             except Exception as e:
+                e+=1
                 print(f"Error occurred while opening closed menu tabs: {e}")
-                handle_exception()
+                handle_exception(day, e)
 
         # Wait for click to finish
         WebDriverWait(driver, 10).until_not(
@@ -106,8 +118,14 @@ while j < 3:
         stations = BeautifulSoup(str(active_meal), 'html.parser').find_all('div', class_='menu-station')
         # Init dict of meal data
         meal = {}
+
+        s=0
         # Iterate through all stations
         for station in stations:
+            s+=1
+
+            print("Station: " + str(s))
+
             # Make a soup of the station
             stationSoup = BeautifulSoup(str(station), 'html.parser')
             # Get the name of the station
@@ -128,7 +146,8 @@ while j < 3:
 
                 #print("Data Recipe: " + item['data-recipe'])
                 i += 1
-                print(i)
+                if i % 30 == 0:
+                    print(i)
 
                 # Click on menu item to open nutrition tab
                 try:
@@ -136,8 +155,9 @@ while j < 3:
                     driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
                     element.click()
                 except Exception as e:
+                    e+=1
                     print(f"Error occurred while opening nutrition tab: {e}")
-                    handle_exception()
+                    handle_exception(day, e)
                 
                 # Wait for nutrition tab to open
                 # Wait .2 seconds for extra safety
@@ -150,7 +170,11 @@ while j < 3:
                 newSoup = BeautifulSoup(driver.page_source, 'html.parser')
                 # Name of item
                 item_name = newSoup.find('div', id='nutrition-slider').find('h2').text
-                print("Item Name: " + item_name)
+
+
+                #print("Item Name: " + item_name)
+
+
                 # Nutrition data
                 nutrition_section_text = [format_nutrition_text(i.text) for i in newSoup.find_all('th')]
                 # Init nurtition dict
@@ -165,15 +189,18 @@ while j < 3:
                     closeButton = driver.find_element(By.CLASS_NAME, 'close-nutrition')
                     closeButton.click()
                 except Exception as e:
+                    e+=1
                     print(f"Error occurred while closing nutrition tab: {e}")
-                    handle_exception()
-                # Wait .2 s for extra safety
-                sleep(.2)
+                    handle_exception(day, e)
+                # Wait .4 s for extra safety
+                sleep(.4)
         # Add meal to day dict
         day[meal_name] = meal
     # Add day to all dict
-    all[curDate] = day
+    all[curDate.__repr__()] = day
     curDate.update_to_next_day()
+
+print(all)
         
 open('results.json', 'w').write(json.dumps(all, indent=4))
 
