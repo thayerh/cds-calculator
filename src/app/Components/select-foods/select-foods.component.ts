@@ -83,10 +83,11 @@ public initializeFood(food:string): string {
   this.selectedFoodObject = this.selectedStationObject[this.selectedFood]
   return '';
 }
-public submitFood(food: any, serving: any):void {
+public submitFood(food: any, serving: any, name: any):void {
   const myFood: ChosenFood = {
     quantity: serving,
-    food: food
+    food: food,
+    name: name,
   }
   this.selectedFoods.push(myFood)
   this.selectedDay = ''

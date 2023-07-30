@@ -41,8 +41,7 @@
         <input matSliderThumb [(ngModel)]="sliderValue">
       </mat-slider>
     </div>
-    <button mat-raised-button color="primary" *ngIf="sliderValue>0 && selectedFood!==''" (click)="submitFood(selectedFoodObject, sliderValue)">Submit</button>
-    
+    <button mat-raised-button color="primary" *ngIf="sliderValue>0 && selectedFood!==''" (click)="submitFood(selectedFoodObject, sliderValue, selectedFood)">Submit</button>
   </mat-card>
 
 
@@ -52,13 +51,12 @@
     </mat-card-header>
     
     <mat-card class="selectedFood" *ngFor="let food of selectedFoods">
-      <mat-card-content>{{food.food.Calories}}</mat-card-content>
+      <mat-card-content>{{food.name}}</mat-card-content>
     </mat-card>
   </mat-card>
-  <app-nutrition-facts>
+  <app-nutrition-facts [selectedFoods]="selectedFoods">
     
   </app-nutrition-facts>
 </div>
-<p *ngIf="selectedFoodObject">{{selectedFoodObject.Calories}}</p>
 
 
