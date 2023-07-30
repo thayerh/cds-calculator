@@ -14,6 +14,7 @@ import { HomeComponent } from './Components/home/home.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import { NutritionFactsComponent } from './Components/nutrition-facts/nutrition-facts.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { FormsModule } from '@angular/forms';
     AppComponent,
     SelectFoodsComponent,
     HomeComponent,
+    NutritionFactsComponent,
 
   ],
   imports: [

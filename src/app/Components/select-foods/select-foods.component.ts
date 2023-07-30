@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { MealserviceService } from 'src/app/Services/mealservice.service';
+import { NutritionFactsComponent } from '../nutrition-facts/nutrition-facts.component';
 
 @Component({
   selector: 'app-select-foods',
