@@ -17,6 +17,10 @@ import { FormsModule } from '@angular/forms';
 import { NutritionFactsComponent } from './Components/nutrition-facts/nutrition-facts.component';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatButtonModule} from '@angular/material/button';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -41,9 +45,13 @@ import {MatButtonModule} from '@angular/material/button';
     FormsModule,
     MatSliderModule,
     MatButtonModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+    DatePipe,
     
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
