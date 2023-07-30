@@ -2,6 +2,8 @@ import { NONE_TYPE } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { MealserviceService } from 'src/app/Services/mealservice.service';
 import { NutritionFactsComponent } from '../nutrition-facts/nutrition-facts.component';
+import { ChosenFood } from 'src/assets/chosen-food';
+
 
 @Component({
   selector: 'app-select-foods',
@@ -9,6 +11,9 @@ import { NutritionFactsComponent } from '../nutrition-facts/nutrition-facts.comp
   styleUrls: ['./select-foods.component.scss'],
 })
 export class SelectFoodsComponent {
+
+  selectedFoods: ChosenFood[] = []
+
   //first layer
   menu = Object(this.mealService.menu);
   days = Object.keys(this.menu)
@@ -72,6 +77,20 @@ public onFoodSelectionChange(event: any): void {
 public initializeFood(food:string): string {
   console.log('oooo');
   return '';
+}
+public submitFood(food: any, serving: any):void {
+  const myFood: ChosenFood = {
+    quantity: serving,
+    food: food
+  }
+  this.selectedFoods.push(myFood)
+  this.selectedDay = ''
+  this.selectedTime = ''
+  this.selectedStation = ''
+  this.selectedFood = ''
+  this.sliderValue = 0
+
+
 }
 
   constructor(private mealService: MealserviceService){}
