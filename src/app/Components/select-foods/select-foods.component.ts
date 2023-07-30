@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MealserviceService } from 'src/app/Services/mealservice.service';
 import { NutritionFactsComponent } from '../nutrition-facts/nutrition-facts.component';
 import { ChosenFood } from 'src/assets/chosen-food';
+import { FoodObject } from 'src/assets/food-object';
 
 
 @Component({
@@ -33,6 +34,7 @@ export class SelectFoodsComponent {
   selectedStationObject = Object(this.selectedTimeObject[this.selectedStation]);
   foods = Object.keys(Object(this.selectedTimeObject[this.selectedStation]));
   selectedFood = '';
+  selectedFoodObject: FoodObject | undefined;
 
   //slider
   sliderValue = 0;
@@ -71,11 +73,14 @@ public initializeStation(station:string): string {
 }
 
 public onFoodSelectionChange(event: any): void {
+  const selectedFood = event.value
+  this.initializeFood(selectedFood)
   console.log('eeee');
 }
 
 public initializeFood(food:string): string {
   console.log('oooo');
+  this.selectedFoodObject = this.selectedStationObject[this.selectedFood]
   return '';
 }
 public submitFood(food: any, serving: any):void {
