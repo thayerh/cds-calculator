@@ -27,7 +27,7 @@ export class SelectFoodsComponent {
   selectedDay= '';
 
   minDate: Date = new Date(2023, 7, 16);
-  maxDate: Date = new Date(2023, 7, 21);
+  maxDate: Date = new Date(2023, 7, 22);
 
   //second layer
   selectedDayObject = Object(this.menu[this.selectedDay]);

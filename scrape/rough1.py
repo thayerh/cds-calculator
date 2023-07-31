@@ -42,14 +42,17 @@ def handle_exception(day, e):
     if e>5: quit()
 
 j=0
-curDate = NextDate(2023, 8, 17)
+curDate = NextDate(2023, 8, 23)
 
 with open("results.json", "r") as json_file:
     all = json.load(json_file)
 
 e=0
 
-while j < 3:
+while j < 1:
+    with open("results.json", "r") as json_file:
+        all = json.load(json_file)
+
     j += 1
 
 
@@ -199,10 +202,10 @@ while j < 3:
     # Add day to all dict
     all[curDate.__repr__()] = day
     curDate.update_to_next_day()
+            
+    open('results.json', 'w').write(json.dumps(all, indent=4))
 
 print(all)
-        
-open('results.json', 'w').write(json.dumps(all, indent=4))
 
 driver.close()
 
