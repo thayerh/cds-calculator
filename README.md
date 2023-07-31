@@ -1,7 +1,7 @@
 ## Inspiration
-As health-conscious hackers, we've always wanted a way to easily track nutrition data from our school's dining hall. After months of discussing the idea, we were thrilled to be able to make the project for this hackathon.
+As health-conscious developers, we've always wanted a way to track nutrition data from our school's dining hall easily. After months of discussing the idea, we were thrilled to be able to make this project for MLH's HackBattle hackathon.
 ## What it does
-This tracker is built off of scraped data from the UNC dining hall website. Users can choose their date, meal time, dining hall section, meal, and number of servings!
+This tracker is built on scraped data from the UNC dining hall website. Users can choose their date, meal time, dining hall section, meal, and number of servings!
 ## How we built it
 The data was scraped using BeautifulSoup and Selenium, and then we used Angular to implement the front-end interface.
 ## Challenges we ran into
