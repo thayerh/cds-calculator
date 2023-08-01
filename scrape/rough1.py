@@ -49,7 +49,7 @@ with open("results.json", "r") as json_file:
 
 e=0
 
-while j < 1:
+while j < 3:
     with open("results.json", "r") as json_file:
         all = json.load(json_file)
 
